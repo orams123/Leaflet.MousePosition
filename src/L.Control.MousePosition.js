@@ -25,7 +25,26 @@ L.Control.MousePosition = L.Control.extend({
   _onMouseMove: function (e) {
     var lng = this.options.lngFormatter ? this.options.lngFormatter(e.latlng.lng) : L.Util.formatNum(e.latlng.lng, this.options.numDigits);
     var lat = this.options.latFormatter ? this.options.latFormatter(e.latlng.lat) : L.Util.formatNum(e.latlng.lat, this.options.numDigits);
-    var value = this.options.lngFirst ? lng + this.options.separator + lat : lat + this.options.separator + lng;
+    
+    var absolute = Math.abs(lat);
+		var degrees = Math.floor(absolute);
+		var minutesNotTruncated = (absolute - degrees) * 60;
+		var minutes = Math.floor(minutesNotTruncated);
+		var seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+		var latitude= degrees + " " + minutes + " " + seconds;
+		var latitudeCardinal = lat >= 0 ? "N" : "S";
+
+		var absolute = Math.abs(lng);
+		var degrees = Math.floor(absolute);
+		var minutesNotTruncated = (absolute - degrees) * 60;
+		var minutes = Math.floor(minutesNotTruncated);
+		var seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+		var longitude= degrees + " " + minutes + " " + seconds;
+		var longitudeCardinal = lng >= 0 ? "E" : "W";
+
+		value =  latitude + " " + latitudeCardinal + " " + longitude + " " + longitudeCardinal;
+    
+    //var value = this.options.lngFirst ? lng + this.options.separator + lat : lat + this.options.separator + lng;
     var prefixAndValue = this.options.prefix + ' ' + value;
     this._container.innerHTML = prefixAndValue;
   }
