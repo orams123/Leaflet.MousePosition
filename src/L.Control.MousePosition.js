@@ -30,7 +30,7 @@ L.Control.MousePosition = L.Control.extend({
 		var degrees = Math.floor(absolute);
 		var minutesNotTruncated = (absolute - degrees) * 60;
 		var minutes = Math.floor(minutesNotTruncated);
-		var seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+		var seconds = Math.floor((minutesNotTruncated - minutes) * 600);
 		var latitude= degrees + " " + minutes + " " + seconds;
 		var latitudeCardinal = lat >= 0 ? "N" : "S";
 
@@ -38,7 +38,7 @@ L.Control.MousePosition = L.Control.extend({
 		var degrees = Math.floor(absolute);
 		var minutesNotTruncated = (absolute - degrees) * 60;
 		var minutes = Math.floor(minutesNotTruncated);
-		var seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+		var seconds = Math.floor((minutesNotTruncated - minutes) * 600);
 		var longitude= degrees + " " + minutes + " " + seconds;
 		var longitudeCardinal = lng >= 0 ? "E" : "W";
 
